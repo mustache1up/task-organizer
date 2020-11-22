@@ -54,8 +54,8 @@ The above copyright notice and this permission notice shall be included in all c
         <div class="collapse navbar-collapse">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item"><a class="nav-link" rel="tooltip"
-              title="" data-placement="bottom"
-              href="#timer-title"
+              title="Tasks" data-placement="bottom"
+              href="#tasks-title"
               data-original-title="Scroll to Tasks"><i
                 class="fa fa-check-square-o"></i> 
                 Tasks 
@@ -84,11 +84,72 @@ The above copyright notice and this permission notice shall be included in all c
   
           <div id="buttons" class="cd-section">
   
-            <!-- Parte relevante inicio -->
+            <!-- main-body -->
             <div id="main-app">
-              
+              <div class="row mb-3 justify-content-center">
+                <div class="col-6">
+                  <div id="tasks-title" class="title">
+
+                    <h2>Missions and tasks</h2>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="row mb-3">
+                <div class="col-12">
+
+                  <span v-for="(mission, mission_index) in topics[0].missions" :key="mission_index">
+                    
+                    <div class="row mb-3">
+                      <div class="col-12">
+                        <div class="input-group mt-3 mb-0">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">
+                              <i class="material-icons">circle</i>
+                            </span>
+                          </div>
+                          <input type="text" class="form-control" placeholder="enter mission here" :value="mission.title" />
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <!-- <transition-group name="list" tag="div" mode="out-in"> -->
+                      <div v-for="(task, task_index) in mission.tasks" :key="task_index" class="row mb-3">
+                        <div class="col-1">
+
+                        </div>
+                        <div class="col-11">
+                          <div class="input-group mb-0">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">
+                                <i class="material-icons">circle</i>
+                              </span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="enter task here" :value="task.title" />
+                          </div>
+                        </div>
+                      </div>
+                    <!-- </transition-group> -->
+
+                    <div class="row mb-3">
+                      <div class="col-1">
+
+                      </div>
+                      <div class="col-11">
+                        <button class="btn btn-sm btn-link btn-primary btn-round" @click="addTask(mission)">
+                          <i class="material-icons">add</i> &nbsp;&nbsp;add task
+                        </button>
+                      </div>
+                    </div>
+    
+                    </span>
+
+                </div>
+              </div>
+
             </div>
-            <!-- Parte relevante fim -->
+            <!-- /main-body -->
           </div>
         </div>
       </div>
@@ -162,23 +223,6 @@ The above copyright notice and this permission notice shall be included in all c
     <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
     <script src="./assets/js/material-kit.js?v=2.0.6"
       type="text/javascript"></script>
-    <script>
-      $(document).ready(function() {
-        //init DateTimePickers
-        materialKit.initFormExtendedDatetimepickers();
-  
-        // Sliders Init
-        materialKit.initSliders();
-      });
-  
-      function scrollToDownload() {
-        if ($('.section-download').length != 0) {
-          $("html, body").animate({
-            scrollTop : $('.section-download').offset().top
-          }, 1000);
-        }
-      }
-    </script>
     
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="main-app.js"></script>
